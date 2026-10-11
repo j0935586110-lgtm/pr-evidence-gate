@@ -1,0 +1,2 @@
+# Receipt fixtures must remain byte-identical on all Git checkouts.
+examples/receipt-v1/logs/*.log -text

@@ -10,7 +10,7 @@ import argparse
 import hashlib
 import json
 import os
-from pathlib import Path, PurePosixPath
+from pathlib import Path, PurePosixPath, PureWindowsPath
 import stat
 
 from pr_evidence import REPO_RE, SHA_RE, collect
@@ -39,6 +39,8 @@ def _sha(value: object, field: str) -> str:
 def _relative_artifact(root: Path, value: object) -> Path:
     if not isinstance(value, str) or not (0 < len(value) <= 512):
         raise ReceiptError("artifact_path_invalid")
+    if PureWindowsPath(value).is_absolute():
+        raise ReceiptError("artifact_path_escape")
     if "\\" in value or "\x00" in value:
         raise ReceiptError("artifact_path_invalid")
     posix = PurePosixPath(value)
