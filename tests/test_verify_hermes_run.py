@@ -23,7 +23,9 @@ class AuditTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.path = Path(self.tmp.name)
+        # macOS /var -> /private/var and Windows path normalization otherwise
+        # make a logically identical worktree fail its exact-root comparison.
+        self.path = Path(self.tmp.name).resolve()
         self.hd = self.path / ".hermes"
         (self.hd / "logs").mkdir(parents=True)
         (self.hd / "logs/red.log").write_text("expected failing regression\n")

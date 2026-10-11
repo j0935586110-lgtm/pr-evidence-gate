@@ -18,8 +18,12 @@ READY = {"READY_FOR_PUSH", "AWAITING_HUMAN_PR"}
 
 
 def read_json(path: Path) -> dict:
-    # Open the actual file descriptor before checking size: stat(path) followed
-    # by read_text(path) would permit a file swap/race between those operations.
+    # Refuse symlinks/reparse points and nonregular files before opening.
+    # On POSIX O_NOFOLLOW is an atomic no-symlink guard; on Windows, verify
+    # that the opened file is still the identical lstat() target BEFORE reads.
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise ValueError("Hermes artifact must be a regular, non-symlink file")
     flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0)
     if hasattr(os, "O_NOFOLLOW"):
         flags |= os.O_NOFOLLOW
@@ -27,8 +31,10 @@ def read_json(path: Path) -> dict:
         flags |= os.O_NONBLOCK
     fd = os.open(path, flags)
     with os.fdopen(fd, "rb") as handle:
-        if not stat.S_ISREG(os.fstat(handle.fileno()).st_mode):
-            raise ValueError("Hermes artifact must be a regular file")
+        after = os.fstat(handle.fileno())
+        if (not stat.S_ISREG(after.st_mode) or
+                (before.st_dev, before.st_ino) != (after.st_dev, after.st_ino)):
+            raise ValueError("Hermes artifact changed identity during open")
         # Bound the read even if another process grows the file after fstat.
         raw = handle.read(1_048_577)
     if len(raw) > 1_048_576:
