@@ -1,0 +1,35 @@
+{
+  "schema": "pr-dual-mode/v1",
+  "mode": "maintainer",
+  "layer": "github_and_git_snapshot",
+  "result": {
+    "schema_version": 1,
+    "read_at_utc": "2026-10-11T11:25:41+00:00",
+    "repository": "NousResearch/hermes-agent",
+    "pr": 98703,
+    "worktree": "<REDACTED_HOME>/work/pr98703-verify-877f0ec-20261011",
+    "remote_head": "877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645",
+    "remote_updated_at": "2026-10-10T19:28:36Z",
+    "local_head": "877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645",
+    "local_dirty": false,
+    "local_modified_count": 0,
+    "status": "SNAPSHOT_MATCH_ONLY",
+    "reasons": [],
+    "verified": [
+      "github_cli_current_pr_metadata",
+      "git_current_head",
+      "git_porcelain_status"
+    ],
+    "not_verified": [
+      "CI",
+      "test_execution",
+      "review_authenticity",
+      "sandbox",
+      "authorization"
+    ],
+    "public_actions_authorized": false
+  },
+  "safe_to_publish": false,
+  "mutating_actions_supported": false,
+  "next_step": "human_and_CI_verification_required"
+}

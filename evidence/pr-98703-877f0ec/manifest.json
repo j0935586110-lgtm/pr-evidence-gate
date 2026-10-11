@@ -1,0 +1,167 @@
+{
+  "base_sha": "302c5d9f679333ae957c256d76a3dff35120f4e0",
+  "before_sha": "14f49cbfa3d4ca55a7ee13031724a1d9416f8466",
+  "evidence": [
+    {
+      "claim": "Linux 25 changed tests",
+      "original_log_sha256": "45c2624c43d04d28fe97027bdd3f22cb3d045e72a3a83689b4619e36540f9262",
+      "result": "287 PASSED / 0 FAILED / 2 SKIPPED; exit 0"
+    },
+    {
+      "claim": "head code-health",
+      "result": "11 checks ok, 0 blocking; exit 0"
+    },
+    {
+      "claim": "before code-health",
+      "result": "11 blocking; exit 1"
+    },
+    {
+      "claim": "merge checkout contributor check simulation",
+      "result": "PASS local reproduction, not hosted CI"
+    }
+  ],
+  "files": [
+    {
+      "path": "FINDINGS-TRACE.md",
+      "sha256": "bf936c523522dc56ea6d2ff6304e805a5a5e7a6e4250c17b53403066d8939db1",
+      "size_bytes": 3326
+    },
+    {
+      "path": "README.md",
+      "sha256": "b7ecc8efc5733fb260224232f474b5ba9b5d971d5d058cf2cd1e727ceb09fce1",
+      "size_bytes": 5687
+    },
+    {
+      "path": "REPRODUCE.md",
+      "sha256": "c50b199f535216580b102e456760a4d2de5300c392f3da961a4aed941b7a6883",
+      "size_bytes": 3633
+    },
+    {
+      "path": "REVIEW-DRAFT-NOT-POSTED.md",
+      "sha256": "c63c697edf90f709702bdbcc07c26c8a5740c635855762abd58b724f0070e28f",
+      "size_bytes": 3596
+    },
+    {
+      "path": "logs/25-changed-files-Linux-py314.log",
+      "sha256": "e18d541f1c8fa74439b84b75b345355ecb1b0444bc697cc93d993608dd810b19",
+      "size_bytes": 5244
+    },
+    {
+      "path": "logs/code-health-before.log",
+      "sha256": "5a9fa77ab65bcab65f12cb061de62ccdf9a2830fdb8637746ee2d03acf729ed7",
+      "size_bytes": 5361
+    },
+    {
+      "path": "logs/code-health-current-health-only.log",
+      "sha256": "f2c3940f731acffa2d40a10071963b2a42299e8d8143312e5d0b11c4d08845f8",
+      "size_bytes": 900
+    },
+    {
+      "path": "logs/code-health-current.log",
+      "sha256": "3e0c629d5e6834231e09bf0af0a1bdeb35cc50f60f1e578685266e15ae947499",
+      "size_bytes": 1090
+    },
+    {
+      "path": "logs/contributor-before.log",
+      "sha256": "53e6096aac7be5ff0967aed806dc5adb2e3a851e4f0e03ac07d17b2ab061d238",
+      "size_bytes": 1659
+    },
+    {
+      "path": "logs/contributor-merge-reproduction.log",
+      "sha256": "e1cf55558a3c815d7044d91c6edbacafa5382a81c0a6033dfc02e66afd005202",
+      "size_bytes": 515
+    },
+    {
+      "path": "logs/exact-head-provenance-9tests.log",
+      "sha256": "9deab40ac551c0ff5cc5e2bcd9019f71daed1dbbe0479b3cd3f08def079babb0",
+      "size_bytes": 1638
+    },
+    {
+      "path": "logs/snapshot-gate.json",
+      "sha256": "13898bf9df7f8399a35bb905bcaf67e45b9b204fb3681c1ebdcd5905391ad24b",
+      "size_bytes": 1023
+    },
+    {
+      "path": "tests/changed-test-files.txt",
+      "sha256": "a6ee3bae3c70e87e224493a18d64aaaec498216dd1879fcf820351157bda8e18",
+      "size_bytes": 1132
+    }
+  ],
+  "generated_at_utc": "2026-10-11T11:57:28.945298+00:00",
+  "head_sha": "877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645",
+  "merge_checkout_sha": "48a375f33aabf8fe901fa1ff0a66f5fbfffdc5df",
+  "original_to_public": [
+    {
+      "local_source_name": "tests/all25-py314-isolated.log",
+      "original_sha256": "45c2624c43d04d28fe97027bdd3f22cb3d045e72a3a83689b4619e36540f9262",
+      "public_sha256": "e18d541f1c8fa74439b84b75b345355ecb1b0444bc697cc93d993608dd810b19",
+      "published_name": "logs/25-changed-files-Linux-py314.log",
+      "redacted": true
+    },
+    {
+      "local_source_name": "tests/changed-test-files.txt",
+      "original_sha256": "a6ee3bae3c70e87e224493a18d64aaaec498216dd1879fcf820351157bda8e18",
+      "public_sha256": "a6ee3bae3c70e87e224493a18d64aaaec498216dd1879fcf820351157bda8e18",
+      "published_name": "tests/changed-test-files.txt",
+      "redacted": false
+    },
+    {
+      "local_source_name": "tests/exact-head-provenance-quiet-image.log",
+      "original_sha256": "d206479a99908be0d0d9327178280ad1f8e37352facdd758275d7394ab8daaab",
+      "public_sha256": "9deab40ac551c0ff5cc5e2bcd9019f71daed1dbbe0479b3cd3f08def079babb0",
+      "published_name": "logs/exact-head-provenance-9tests.log",
+      "redacted": true
+    },
+    {
+      "local_source_name": "gate/check-before-14f49cb-health.log",
+      "original_sha256": "1404720ee7234c584a534acc0a449bffdcb7dc898610ce472d9d147a284b00af",
+      "public_sha256": "5a9fa77ab65bcab65f12cb061de62ccdf9a2830fdb8637746ee2d03acf729ed7",
+      "published_name": "logs/code-health-before.log",
+      "redacted": true
+    },
+    {
+      "local_source_name": "gate/check-877f0ecb-python314.log",
+      "original_sha256": "52fe3b93e4b21e1fe8017eb12847506c096ba2b8ccce62172772d02e764a0c17",
+      "public_sha256": "3e0c629d5e6834231e09bf0af0a1bdeb35cc50f60f1e578685266e15ae947499",
+      "published_name": "logs/code-health-current.log",
+      "redacted": true
+    },
+    {
+      "local_source_name": "gate/check-head-health-only.log",
+      "original_sha256": "f2c3940f731acffa2d40a10071963b2a42299e8d8143312e5d0b11c4d08845f8",
+      "public_sha256": "f2c3940f731acffa2d40a10071963b2a42299e8d8143312e5d0b11c4d08845f8",
+      "published_name": "logs/code-health-current-health-only.log",
+      "redacted": false
+    },
+    {
+      "local_source_name": "gate/attr-before-14f49cb.log",
+      "original_sha256": "58cca978a5e6afb01511ab8246ee418a8180b677167cdf685b9d9295e57f8600",
+      "public_sha256": "53e6096aac7be5ff0967aed806dc5adb2e3a851e4f0e03ac07d17b2ab061d238",
+      "published_name": "logs/contributor-before.log",
+      "redacted": true
+    },
+    {
+      "local_source_name": "gate/attr-after-merge-48a375f.log",
+      "original_sha256": "a8408c3bf68e53910c3b25cd21837bd8f79b570cf335a0fbc2a9d4fa1432ef50",
+      "public_sha256": "e1cf55558a3c815d7044d91c6edbacafa5382a81c0a6033dfc02e66afd005202",
+      "published_name": "logs/contributor-merge-reproduction.log",
+      "redacted": true
+    },
+    {
+      "local_source_name": "gate/round2.json",
+      "original_sha256": "6fac8a134addd6499e99335dc4ce4c4a4b9bb2960aeafd207bfcd9d39057309a",
+      "public_sha256": "13898bf9df7f8399a35bb905bcaf67e45b9b204fb3681c1ebdcd5905391ad24b",
+      "published_name": "logs/snapshot-gate.json",
+      "redacted": true
+    }
+  ],
+  "pr": 98703,
+  "publication_state": "PUBLIC_EVIDENCE_PACKAGE_NOT_APPROVAL",
+  "repo": "NousResearch/hermes-agent",
+  "schema": "pr-evidence-package/v1",
+  "verification_scope": [
+    "local evidence and file hashes only",
+    "no upstream hosted CI success",
+    "macOS tests skipped"
+  ]
+}

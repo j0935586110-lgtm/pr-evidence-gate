@@ -1,0 +1,19 @@
+# cwd: <REDACTED_HOME>/work/pr98703-before-14f49cb
+# HEAD: 14f49cbfa3d4ca55a7ee13031724a1d9416f8466
+# merge-base with origin/main(=upstream 79b45d16): 302c5d9f679333ae957c256d76a3dff35120f4e0
+# range: 302c5d9f679333ae957c256d76a3dff35120f4e0..HEAD
+# new author emails in range: 109447498+Baophan00@users.noreply.github.com 129692708+huklaa@users.noreply.github.com 165816600+finn763@users.noreply.github.com 294917029+victorjmilagres@users.noreply.github.com 80915+DavidMetcalfe@users.noreply.github.com 94890352+Adolanium@users.noreply.github.com beardthelion@users.noreply.github.com brooklyn.bb.nicholson@gmail.com dskwelmcy@163.com embwl0x@users.noreply.github.com eric.maddox@outlook.com github@00b.tech gonzoblasco@gmail.com joaomarcosdias444@gmail.com konstantin.khlopkov93@gmail.com kvl.olg@gmail.com peace@trippyogi.com tim404x@users.noreply.github.com ugo.enyioha@outlook.com UniversePeak@users.noreply.github.com 
+#   mapped via contributors/emails/dskwelmcy@163.com -> dskwe
+#   mapped via contributors/emails/eric.maddox@outlook.com -> ericmaddox
+#   mapped via contributors/emails/github@00b.tech -> 686f6c61
+#   mapped via contributors/emails/joaomarcosdias444@gmail.com -> JoaoMarcos44
+#   mapped via contributors/emails/konstantin.khlopkov93@gmail.com -> kokhlo
+#   mapped via contributors/emails/peace@trippyogi.com -> trippyogi
+#   mapped via contributors/emails/ugo.enyioha@outlook.com -> ugoenyioha
+⚠️  New contributor email(s) without a mapping:
+
+  gonzoblasco@gmail.com (Gonzalo Blasco)
+  kvl.olg@gmail.com (Oleg Koval)
+  tim404x@users.noreply.github.com (tim404x)
+  UniversePeak@users.noreply.github.com (UniversePeak)
+RESULT=FAIL

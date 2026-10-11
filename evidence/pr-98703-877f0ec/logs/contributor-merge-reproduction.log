@@ -1,0 +1,8 @@
+# cwd: <REDACTED_HOME>/work/pr98703-merge-48a375f
+# HEAD: 48a375f33aabf8fe901fa1ff0a66f5fbfffdc5df
+# merge-base with origin/main(=upstream 79b45d16): 0faf0938ebdc4420e11070822cf4f9db09eb4260
+# range: 0faf0938ebdc4420e11070822cf4f9db09eb4260..HEAD
+# new author emails in range: joaomarcosdias444@gmail.com kvl.olg@gmail.com 
+#   mapped via contributors/emails/joaomarcosdias444@gmail.com -> JoaoMarcos44
+#   mapped via contributors/emails/kvl.olg@gmail.com -> oleg-koval
+RESULT=PASS (no unmapped contributor emails)

@@ -1,0 +1,30 @@
+J1_E3_EXACT_HEAD_RECEIPT=2026-10-11
+HOST_HEAD_BEFORE=877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+HOST_TREE_BEFORE=2cca73774a32467135b529948e7eb2f3693be5b2
+HOST_DIRTY_BEFORE=0
+DOCKER_IMAGE_DIGEST=sha256:db30b1e265083a9aa0bc2024616ba1692d3e72701848a97d798e66972409523b
+RUNNER: bash scripts/run_tests.sh -j 1 --file-retries 0 --tb=short tests/hermes_cli/test_cli_image_command.py
+CONFINEMENT: docker --network none --read-only --cap-drop ALL --security-opt no-new-privileges; immutable source /upstream:ro, temporary /src
+▶ not activated — using HERMES_PYTHON: <REDACTED_HOME>/work/pr98703-env314/bin/python
+▶ running per-file parallel test suite via run_tests_parallel.py
+  (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)
+▶ pre-compiling bytecode cache
+scripts/run_tests.sh: line 181: git: command not found
+▶ launching test runner
+Discovered 1 test files (~9 tests) under ['tests/hermes_cli/test_cli_image_command.py']; running with -j 1
+[100.0% |     9/~9 | ✓9 | ✗0] ✓ tests/hermes_cli/test_cli_image_command.py (9✓, 5.0s)
+
+=== Summary: 1 files, 9 tests passed, 0 failed (100% complete) in 5.0s (1 workers) ===
+  Durations cached to test_durations.json (1 files)
+
+=== Per-file subprocess time distribution ===
+  Files:   1
+  Total subprocess CPU-wall: 5.0s  (runner wall: 5.0s, parallelism: 1x)
+  P50: 4.97s  P90: 4.97s  P95: 4.97s  P99: 4.97s  Max: 4.97s
+  <1s: 0 files (0%)  <2s: 0 files (0%)
+  Top 10 slowest:
+      4.97s  tests/hermes_cli/test_cli_image_command.py
+RUNNER_EXIT_CODE=0
+HOST_HEAD_AFTER=877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+HOST_TREE_AFTER=2cca73774a32467135b529948e7eb2f3693be5b2
+HOST_DIRTY_AFTER=0

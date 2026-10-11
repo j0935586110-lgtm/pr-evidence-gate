@@ -1,0 +1,22 @@
+# command: python scripts/check
+# cwd: <REDACTED_HOME>/work/pr98703-verify-877f0ec-20261011
+# git HEAD: 877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+# base (merge-base with origin/main=upstream 79b45d16): 302c5d9f679333ae957c256d76a3dff35120f4e0
+# interpreter: Python 3.14.7
+# started: 2026-10-11T19:37:20+08:00
+---
+
+=== health (ok) ===
+Allowed by comment (reviewers: check the reasons):
+  gateway/run_inbound.py:1  FILE_LINES  <module>  -- routing changes stay localized here to avoid a risky Gateway MRO split in this PR
+  gateway/run_turn.py:1  FILE_LINES  <module>  -- keep turn-route orchestration atomic while this middleware API stabilizes
+  gateway/run_turn_runner.py:1  FILE_LINES  <module>  -- preparation and execution share stateful callbacks that should not be split mid-review
+  hermes_cli/cli_commands_mixin.py:1  FILE_LINES  <module>  -- plugin dispatch stays beside slash-command routing for compatibility
+
+code health: 42 files vs 302c5d9f6793: 0 blocking, 0 advisory (11.5s)
+
+scripts/check: 11 checks, ok
+---
+# exit code: 0
+# finished: 2026-10-11T19:37:39+08:00
+CHECK_EXIT=0

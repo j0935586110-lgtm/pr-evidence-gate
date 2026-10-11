@@ -1,0 +1,56 @@
+# command: python scripts/check --only health
+# cwd: <REDACTED_HOME>/work/pr98703-before-14f49cb
+# git HEAD: 14f49cbfa3d4ca55a7ee13031724a1d9416f8466 (pre-fix head = fff70b4c^)
+# base: 302c5d9f679333ae957c256d76a3dff35120f4e0
+# interpreter: Python 3.14.7
+# started: 2026-10-11T19:37:23+08:00
+---
+
+=== health (failed) ===
+gateway/run_inbound.py:1  FILE_LINES  <module>
+    lines 2106 > 2046, its value on main (over target 2000: it may only go down)
+    fix: offset the growth in the same PR: move an existing function or class into a topical sibling `<stem>_<topic>.py` (moved code keeps its cap; see root AGENTS.md), or put new tests in a new `test_<stem>_<topic>.py`; new behaviour never goes into a facade
+gateway/run_turn.py:1  FILE_LINES  <module>
+    lines 4408 > 4368, its value on main (over target 2000: it may only go down)
+    fix: offset the growth in the same PR: move an existing function or class into a topical sibling `<stem>_<topic>.py` (moved code keeps its cap; see root AGENTS.md), or put new tests in a new `test_<stem>_<topic>.py`; new behaviour never goes into a facade
+gateway/run_turn_routing.py:123  BLE001  GatewayTurnRoutingMixin._resolve_turn_agent_config
+    blind `except Exception`
+    fix: catch the exceptions this code can actually raise; a deliberate catch-all boundary must re-raise or log the traceback (`logger.exception(...)` or `exc_info=True`; `logger.warning(..., e)` is not enough). `# noqa` is ignored here: waive with `# health: allow BLE001 -- <why>`
+gateway/run_turn_routing.py:133  BLE001  GatewayTurnRoutingMixin._resolve_turn_agent_config
+    blind `except Exception`
+    fix: catch the exceptions this code can actually raise; a deliberate catch-all boundary must re-raise or log the traceback (`logger.exception(...)` or `exc_info=True`; `logger.warning(..., e)` is not enough). `# noqa` is ignored here: waive with `# health: allow BLE001 -- <why>`
+gateway/run_turn_runner.py:1  FILE_LINES  <module>
+    lines 2137 > 2001, its value on main (over target 2000: it may only go down)
+    fix: offset the growth in the same PR: move an existing function or class into a topical sibling `<stem>_<topic>.py` (moved code keeps its cap; see root AGENTS.md), or put new tests in a new `test_<stem>_<topic>.py`; new behaviour never goes into a facade
+hermes_cli/cli_agent_setup_mixin.py:39  BLE001  _compression_root
+    blind `except Exception`
+    fix: catch the exceptions this code can actually raise; a deliberate catch-all boundary must re-raise or log the traceback (`logger.exception(...)` or `exc_info=True`; `logger.warning(..., e)` is not enough). `# noqa` is ignored here: waive with `# health: allow BLE001 -- <why>`
+hermes_cli/cli_agent_setup_mixin.py:673  BLE001  CLIAgentSetupMixin._resolve_turn_agent_config
+    blind `except Exception`
+    fix: catch the exceptions this code can actually raise; a deliberate catch-all boundary must re-raise or log the traceback (`logger.exception(...)` or `exc_info=True`; `logger.warning(..., e)` is not enough). `# noqa` is ignored here: waive with `# health: allow BLE001 -- <why>`
+hermes_cli/cli_commands_mixin.py:1  FILE_LINES  <module>
+    lines 2477 > 2442, its value on main (over target 2000: it may only go down)
+    fix: offset the growth in the same PR: move an existing function or class into a topical sibling `<stem>_<topic>.py` (moved code keeps its cap; see root AGENTS.md), or put new tests in a new `test_<stem>_<topic>.py`; new behaviour never goes into a facade
+hermes_cli/cli_commands_mixin.py:548  BLE001  CLICommandsMixin._run_plugin_slash_command
+    blind `except Exception`
+    fix: catch the exceptions this code can actually raise; a deliberate catch-all boundary must re-raise or log the traceback (`logger.exception(...)` or `exc_info=True`; `logger.warning(..., e)` is not enough). `# noqa` is ignored here: waive with `# health: allow BLE001 -- <why>`
+hermes_cli/plugins.py:1  FILE_LINES  <module>
+    lines 2306 > 2264, its value on main (over target 2000: it may only go down)
+    fix: offset the growth in the same PR: move an existing function or class into a topical sibling `<stem>_<topic>.py` (moved code keeps its cap; see root AGENTS.md), or put new tests in a new `test_<stem>_<topic>.py`; new behaviour never goes into a facade
+tests/hermes_cli/test_plugins.py:1  FILE_LINES  <module>
+    lines 2849 > 2716, its value on main (over target 2000: it may only go down)
+    fix: offset the growth in the same PR: move an existing function or class into a topical sibling `<stem>_<topic>.py` (moved code keeps its cap; see root AGENTS.md), or put new tests in a new `test_<stem>_<topic>.py`; new behaviour never goes into a facade
+
+code health: 39 files vs 302c5d9f6793: 11 blocking, 0 advisory (11.1s)
+
+Each function and file has its own cap: its value on main if it is already over target,
+otherwise the target. New code meets the target; existing code may only go down. Fix the code
+(the `fix:` line is the repo's remedy); a genuine exception takes a reviewed comment on the line,
+`# health: allow <RULE> -- <why>`. Rules and targets: scripts/code_health/config.py.
+Reproduce locally: python scripts/check --only health (every lint check: python scripts/check;
+on every push: python scripts/check --install-hook pre-push).
+
+scripts/check: 1 checks, FAILED: health
+---
+# exit code: 1
+# finished: 2026-10-11T19:37:34+08:00

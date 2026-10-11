@@ -1,0 +1,19 @@
+HEAD
+877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+TREE
+2cca73774a32467135b529948e7eb2f3693be5b2
+BASE
+302c5d9f679333ae957c256d76a3dff35120f4e0
+COMMAND: python scripts/check --only health
+
+=== health (ok) ===
+Allowed by comment (reviewers: check the reasons):
+  gateway/run_inbound.py:1  FILE_LINES  <module>  -- routing changes stay localized here to avoid a risky Gateway MRO split in this PR
+  gateway/run_turn.py:1  FILE_LINES  <module>  -- keep turn-route orchestration atomic while this middleware API stabilizes
+  gateway/run_turn_runner.py:1  FILE_LINES  <module>  -- preparation and execution share stateful callbacks that should not be split mid-review
+  hermes_cli/cli_commands_mixin.py:1  FILE_LINES  <module>  -- plugin dispatch stays beside slash-command routing for compatibility
+
+code health: 42 files vs 302c5d9f6793: 0 blocking, 0 advisory (8.3s)
+
+scripts/check: 1 checks, ok
+EXIT_CODE=0
