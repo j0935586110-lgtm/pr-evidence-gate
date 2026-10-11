@@ -24,6 +24,8 @@ jobs:
         run: pr-evidence-gate --version
       - name: Unit tests
         run: python -m unittest discover -s tests -v
+      - name: Synthetic receipt smoke test (offline, untrusted)
+        run: pr-evidence-gate receipt --manifest examples/receipt-v1/receipt.json
       - name: Doctor is fail-closed without login
         shell: python
         run: |

@@ -1,10 +1,10 @@
 # PR Evidence Gate
 
-**Read-only, fail-closed PR verification for contributors and maintainers — v0.2.0.** Lightweight Python CLI. Reuses GitHub CLI (`gh`), local Git, and *optional* existing Hermes Loop artifacts. Does not invent another agent orchestration layer, task database, or PR reviewer.
+**Read-only, fail-closed PR evidence integrity checks — v0.3.0.** Lightweight Python CLI. Reuses GitHub CLI (`gh`), local Git, and *optional* existing Hermes Loop artifacts. Does not invent another agent orchestration layer, task database, or PR reviewer.
 
 **繁體中文**：PR 證據閘門是一個輕量開源工具，核對 GitHub PR HEAD、本地 Git 工作樹，以及可選的 Hermes 驗收紀錄。適用於維護者與貢獻者兩種工作流程。**所有結果都不代表授權 Push、Merge、核准或公開發布**。
 
-## Install and diagnose (v0.2.0)
+## Install and diagnose (v0.3.0)
 
 See [the step-by-step installation guide](docs/INSTALL.md) for
 macOS/Linux, Windows PowerShell, and first-time GitHub CLI setup.
@@ -54,6 +54,29 @@ legacy `python3 tools/pr_workflow.py --mode maintainer ...` form.
 attempting to check a remote PR.
 
 Command exit codes: **0** = snapshot consistency only (never publication approval); **2** = blocked by a gate; **3** = I/O/tool/other error. JSON output is suitable for a CI report or Agent handoff.
+
+## Test receipt integrity (new in v0.3.0)
+
+Use `receipt` to verify *locally stored* test logs against a commit-scoped
+manifest with SHA-256 and byte counts, and explicitly record baseline failures,
+after-fix passes, independently reproduced bugs, cross-platform results and
+hosted CI that is still `action_required`. No command listed in a receipt is
+executed by the verifier.
+
+```bash
+# Synthetic, clearly labeled sample (works offline, no GitHub login):
+pr-evidence-gate receipt --manifest examples/receipt-v1/receipt.json
+
+# Real evidence, additionally check current PR HEAD and clean local checkout:
+pr-evidence-gate receipt --manifest /outside-worktree/receipt.json \
+  --worktree /path/to/clean-pr-checkout
+```
+
+Passing returns `HASHES_MATCH_UNTRUSTED`: logs + hashes match the
+self-reported manifest, **not** a trusted attestation or approval to publish.
+See [receipt format, security boundaries and real #99053 case study](docs/RECEIPTS.md).
+This is an integrity check only; GitHub Actions remains the authoritative source
+for actual hosted CI outcomes.
 
 ## What it does
 

@@ -11,6 +11,7 @@ import json
 import sys
 
 from pr_doctor import inspect
+from pr_receipt import inspect as inspect_receipt
 
 from pr_evidence import collect
 from verify_hermes_run import audit
@@ -42,19 +43,33 @@ def evaluate(mode: str, repo: str, pr: int, worktree: str) -> dict:
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", nargs="?", choices=("check", "doctor"),
+    parser.add_argument("command", nargs="?", choices=("check", "doctor", "receipt"),
                         default="check", help="doctor: diagnose setup; check: verify PR snapshot")
-    parser.add_argument("--version", action="version", version="%(prog)s 0.2.0")
+    parser.add_argument("--version", action="version", version="%(prog)s 0.3.0")
     parser.add_argument("--mode", choices=("maintainer", "contributor"),
                         default="maintainer")
     parser.add_argument("--repo")
     parser.add_argument("--pr", type=int)
     parser.add_argument("--worktree")
+    parser.add_argument("--manifest", help="receipt manifest JSON; artifacts are checked read-only")
     args = parser.parse_args(argv)
     if args.command == "doctor":
         output = inspect(args.mode, args.worktree)
         print(json.dumps(output, ensure_ascii=False, indent=2))
         return 0 if output["status"] == "READY_FOR_METADATA_CHECK" else 2
+    if args.command == "receipt":
+        if not args.manifest:
+            parser.error("receipt requires --manifest /path/to/receipt.json")
+        try:
+            output = inspect_receipt(args.manifest, worktree=args.worktree)
+            rc = 0 if output["status"] == "HASHES_MATCH_UNTRUSTED" else 2
+        except Exception as exc:
+            output = {"schema": "pr-evidence-gate/receipt-check/v1",
+                      "status": "ERROR", "reason": type(exc).__name__,
+                      "safe_to_publish": False, "mutating_actions_supported": False}
+            rc = 3
+        print(json.dumps(output, ensure_ascii=False, indent=2))
+        return rc
     if not args.repo or not args.pr or not args.worktree:
         parser.error("check needs --repo OWNER/REPO, --pr NUMBER and --worktree PATH; try 'doctor' first")
     try:

@@ -78,3 +78,21 @@ containing production credentials.
 
 **v0.2.0 onward: Apache-2.0.** Original `v0.1.0` was released under
 MIT; its original tag and historical rights remain intact.
+
+
+## Verify receipt integrity (v0.3)
+
+This check is entirely local and requires no GitHub login:
+
+```bash
+pr-evidence-gate receipt --manifest examples/receipt-v1/receipt.json
+```
+
+The bundled example is **synthetic**. `HASHES_MATCH_UNTRUSTED` means the
+listed files match their supplied hashes; it does **not** mean a human, CI
+runner, or model executed the tests. See [RECEIPTS.md](RECEIPTS.md)
+for real-world artifact layout and the Hermes #99053 case study.
+
+To additionally confirm the manifest corresponds to the current remote PR
+HEAD, pass `--worktree /path/to/clean-pr-checkout`. This requires `gh`
+and authenticated read access; if either is missing, it fails closed.

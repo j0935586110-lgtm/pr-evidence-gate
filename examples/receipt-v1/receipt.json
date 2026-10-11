@@ -1,0 +1,58 @@
+{
+  "schema": "pr-evidence-gate/receipt/v1",
+  "repository": "NousResearch/hermes-agent",
+  "pr": 99053,
+  "head_sha": "11b57f34b8c1ce9885ae89db3d726105cd1c3fed",
+  "baseline_sha": "97a9ae8ee55d31bebce49f1fb6b5ef775323976a",
+  "_example_notice": "SIMULATED DATA ONLY. No real proof of #99053 tests.",
+  "checks": [
+    {
+      "id": "before-simulated",
+      "phase": "before",
+      "source_sha": "d4fb4a7d08397b2b863dca67d21b15380f903951",
+      "platform": "linux-x86_64",
+      "outcome": "EXPECTED_FAILURE",
+      "exit_code": 1,
+      "artifact": {
+        "path": "logs/before.log",
+        "sha256": "af2273e2d1c22cf5fddaecc3582a02bf7c693cda0fb9a23597cc11013b3d016b",
+        "bytes": 88
+      }
+    },
+    {
+      "id": "after-simulated",
+      "phase": "after",
+      "source_sha": "11b57f34b8c1ce9885ae89db3d726105cd1c3fed",
+      "platform": "linux-x86_64",
+      "outcome": "PASS",
+      "exit_code": 0,
+      "artifact": {
+        "path": "logs/after.log",
+        "sha256": "788744f6eb139d0c228ca48e6324838323f5c09ac431af67209db43009241964",
+        "bytes": 51
+      }
+    },
+    {
+      "id": "mainline-simulated",
+      "phase": "mainline",
+      "source_sha": "97a9ae8ee55d31bebce49f1fb6b5ef775323976a",
+      "platform": "linux-x86_64",
+      "outcome": "REPRODUCED",
+      "exit_code": 0,
+      "artifact": {
+        "path": "logs/mainline.log",
+        "sha256": "260917a514cbb621485a32faf02a832e2fcd717891037cc8629fea2d7d15818b",
+        "bytes": 64
+      }
+    },
+    {
+      "id": "hosted-ci-example",
+      "phase": "hosted_ci",
+      "source_sha": "11b57f34b8c1ce9885ae89db3d726105cd1c3fed",
+      "platform": "github-hosted",
+      "outcome": "ACTION_REQUIRED",
+      "exit_code": null,
+      "reason": "SYNTHETIC example: workflow approval needed"
+    }
+  ]
+}

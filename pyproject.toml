@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pr-evidence-gate"
-version = "0.2.0"
+version = "0.3.0"
 description = "Read-only, fail-closed GitHub pull request evidence verification"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -27,7 +27,7 @@ Issues = "https://github.com/j0935586110-lgtm/pr-evidence-gate/issues"
 pr-evidence-gate = "pr_workflow:main"
 
 [tool.setuptools]
-py-modules = ["pr_evidence", "verify_hermes_run", "pr_workflow", "pr_doctor"]
+py-modules = ["pr_evidence", "verify_hermes_run", "pr_workflow", "pr_doctor", "pr_receipt"]
 
 [tool.setuptools.package-dir]
 "" = "tools"
