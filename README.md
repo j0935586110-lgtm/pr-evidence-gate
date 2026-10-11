@@ -1,8 +1,26 @@
 # PR Evidence Gate
 
-**Read-only, fail-closed PR verification for contributors and maintainers.** Lightweight Python CLI. Reuses GitHub CLI (`gh`), local Git, and *optional* existing Hermes Loop artifacts. Does not invent another agent orchestration layer, task database, or PR reviewer.
+**Read-only, fail-closed PR verification for contributors and maintainers — v0.2.0.** Lightweight Python CLI. Reuses GitHub CLI (`gh`), local Git, and *optional* existing Hermes Loop artifacts. Does not invent another agent orchestration layer, task database, or PR reviewer.
 
 **繁體中文**：PR 證據閘門是一個輕量開源工具，核對 GitHub PR HEAD、本地 Git 工作樹，以及可選的 Hermes 驗收紀錄。適用於維護者與貢獻者兩種工作流程。**所有結果都不代表授權 Push、Merge、核准或公開發布**。
+
+## Install and diagnose (v0.2.0)
+
+See [the step-by-step installation guide](docs/INSTALL.md) for
+macOS/Linux, Windows PowerShell, and first-time GitHub CLI setup.
+
+```bash
+git clone https://github.com/j0935586110-lgtm/pr-evidence-gate.git
+cd pr-evidence-gate
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install .
+pr-evidence-gate doctor
+```
+
+`doctor` returns structured JSON and actionable commands if Git, GitHub CLI
+or GitHub authentication is missing. A real PR check still requires a local
+checkout of that PR and separate verification of trusted CI.
 
 ## Requirements
 
@@ -17,6 +35,7 @@
 git clone https://github.com/j0935586110-lgtm/pr-evidence-gate.git
 cd pr-evidence-gate
 python3 -m unittest discover -s tests -v
+python3 tools/pr_workflow.py doctor
 
 # Maintainer: exact remote HEAD and local worktree check
 python3 tools/pr_workflow.py --mode maintainer \
@@ -28,6 +47,11 @@ python3 tools/pr_workflow.py --mode contributor \
   --repo NousResearch/hermes-agent --pr 99053 \
   --worktree /path/to/checked-out-pr
 ```
+
+CLI: `pr-evidence-gate check --mode maintainer ...` is equivalent to the
+legacy `python3 tools/pr_workflow.py --mode maintainer ...` form.
+`pr-evidence-gate doctor --worktree PATH` inspects prerequisites without
+attempting to check a remote PR.
 
 Command exit codes: **0** = snapshot consistency only (never publication approval); **2** = blocked by a gate; **3** = I/O/tool/other error. JSON output is suitable for a CI report or Agent handoff.
 
@@ -61,4 +85,8 @@ Run checks after new commits and before preparing release evidence; **always ind
 
 ## License
 
-MIT. Issues and small reproducible PRs welcome.
+**Apache License 2.0** for v0.2.0 and subsequent releases. See
+[LICENSE](LICENSE) and [NOTICE](NOTICE). The original v0.1.0 release
+was MIT-licensed and remains available under its historical terms.
+
+Issues and small reproducible PRs welcome.

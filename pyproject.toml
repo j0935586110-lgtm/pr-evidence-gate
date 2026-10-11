@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pr-evidence-gate"
+version = "0.2.0"
+description = "Read-only, fail-closed GitHub pull request evidence verification"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "Shenwei Technology Contributors" }]
+keywords = ["github", "pull-request", "devtools", "hermes", "ai-agent", "audit"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/j0935586110-lgtm/pr-evidence-gate"
+Repository = "https://github.com/j0935586110-lgtm/pr-evidence-gate"
+Issues = "https://github.com/j0935586110-lgtm/pr-evidence-gate/issues"
+
+[project.scripts]
+pr-evidence-gate = "pr_workflow:main"
+
+[tool.setuptools]
+py-modules = ["pr_evidence", "verify_hermes_run", "pr_workflow", "pr_doctor"]
+
+[tool.setuptools.package-dir]
+"" = "tools"
