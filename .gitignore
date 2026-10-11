@@ -10,3 +10,6 @@ credentials.*
 *.log
 secrets/
 evidence/private/
+build/
+dist/
+*.egg-info/
