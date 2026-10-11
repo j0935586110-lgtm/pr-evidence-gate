@@ -1,0 +1,66 @@
+RUN_AT_UTC=2026-10-11T12:32:01Z
+OS=14.6.1 ARCH=arm64
+HEAD_BEFORE=877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+TREE_BEFORE=2cca73774a32467135b529948e7eb2f3693be5b2
+DIRTY_BEFORE=0
+PYTHON=Python 3.14.7
+PYTEST=pytest 9.1.1
+COMMAND=bash scripts/run_tests.sh -j 2 --file-retries 0 --tb=short [25 changed tests]
+SANDBOX=macOS sandbox-exec deny network; minimal env + isolated HOME
+SELECTOR_COUNT=25
+▶ not activated — using HERMES_PYTHON: <REDACTED_USER_HOME>/j1-review/pr98703-macos-877f0ec/py314-env/bin/python
+▶ running per-file parallel test suite via run_tests_parallel.py
+  (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)
+▶ pre-compiling bytecode cache
+▶ launching test runner
+Discovered 25 test files (~261 tests) under ['tests/agent/test_credential_pool_routing.py', 'tests/agent/test_fast_mode_auto.py', 'tests/agent/test_openai_ultrafast.py', 'tests/agent/test_vision_aware_preprocessing.py', 'tests/gateway/test_compression_failure_session_sync.py', 'tests/gateway/test_custom_provider_request_overrides.py', 'tests/gateway/test_fast_command.py', 'tests/gateway/test_image_input_routing_runtime.py', 'tests/gateway/test_pre_agent_fallback_notice.py', 'tests/gateway/test_proxy_mode.py', 'tests/gateway/test_queued_followup_processing_hooks.py', 'tests/gateway/test_reply_to_injection.py', 'tests/gateway/test_session_model_override_persistence.py', 'tests/gateway/test_turn_context.py', 'tests/gateway/test_turn_request_overrides.py', 'tests/gateway/test_turn_route_internal.py', 'tests/hermes_cli/test_cli_custom_provider_vision.py', 'tests/hermes_cli/test_cli_fallback_chain_hot_reload.py', 'tests/hermes_cli/test_cli_image_command.py', 'tests/hermes_cli/test_fast_command.py', 'tests/hermes_cli/test_plugin_command_dispatch.py', 'tests/hermes_cli/test_plugin_command_route_identity.py', 'tests/hermes_cli/test_plugins.py', 'tests/hermes_cli/test_plugins_turn_routing.py', 'tests/hermes_cli/test_turn_route_cli_cache.py']; running with -j 2
+[  1.9% |     5/~261 | ✓5 | ✗0] ✓ tests/agent/test_fast_mode_auto.py (5✓, 1.4s)
+[  7.3% |    19/~261 | ✓19 | ✗ 0] ✓ tests/agent/test_credential_pool_routing.py (14✓, 2.1s)
+[ 11.9% |    31/~261 | ✓31 | ✗ 0] ✓ tests/agent/test_vision_aware_preprocessing.py (12✓, 1.1s)
+[ 15.3% |    40/~261 | ✓45 | ✗ 0] ✓ tests/agent/test_openai_ultrafast.py (14✓, 2.6s)
+[ 16.1% |    42/~261 | ✓47 | ✗ 0] ✓ tests/gateway/test_compression_failure_session_sync.py (2✓, 1.1s)
+[ 18.0% |    47/~261 | ✓52 | ✗ 0] ✓ tests/gateway/test_custom_provider_request_overrides.py (5✓, 1.1s)
+[ 19.9% |    52/~261 | ✓58 | ✗ 0] ✓ tests/gateway/test_image_input_routing_runtime.py (6✓, 0.7s)
+[ 24.1% |    63/~261 | ✓72 | ✗ 0] ✓ tests/gateway/test_fast_command.py (14✓, 2.0s)
+[ 24.9% |    65/~261 | ✓74 | ✗ 0] ✓ tests/gateway/test_pre_agent_fallback_notice.py (2✓, 0.7s)
+[ 31.8% |    83/~261 | ✓93 | ✗ 0] ✓ tests/gateway/test_proxy_mode.py (19✓, 1.4s)
+[ 34.1% |    89/~261 | ✓99 | ✗ 0] ✓ tests/gateway/test_reply_to_injection.py (6✓, 1.3s)
+[ 36.4% |    95/~261 | ✓106 | ✗  0] ✓ tests/gateway/test_session_model_override_persistence.py (7✓, 0.7s)
+[ 39.5% |   103/~261 | ✓115 | ✗  0] ✓ tests/gateway/test_turn_context.py (9✓, 0.7s)
+[ 42.1% |   110/~261 | ✓122 | ✗  0] ✓ tests/gateway/test_turn_request_overrides.py (7✓, 0.7s)
+[ 44.4% |   116/~261 | ✓130 | ✗  0] ✓ tests/gateway/test_turn_route_internal.py (8✓, 0.7s)
+[ 45.2% |   118/~261 | ✓132 | ✗  0] ✓ tests/hermes_cli/test_cli_custom_provider_vision.py (2✓, 1.5s)
+[ 47.5% |   124/~261 | ✓139 | ✗  0] ✓ tests/gateway/test_queued_followup_processing_hooks.py (7✓, 7.9s)
+[ 47.9% |   125/~261 | ✓140 | ✗  0] ✓ tests/hermes_cli/test_cli_fallback_chain_hot_reload.py (1✓, 1.3s)
+[ 51.3% |   134/~261 | ✓149 | ✗  0] ✓ tests/hermes_cli/test_cli_image_command.py (9✓, 1.4s)
+[ 52.1% |   136/~261 | ✓151 | ✗  0] ✓ tests/hermes_cli/test_plugin_command_dispatch.py (2✓, 0.7s)
+[ 59.4% |   155/~261 | ✓170 | ✗  0] ✓ tests/hermes_cli/test_fast_command.py (19✓, 1.9s)
+[ 59.8% |   156/~261 | ✓171 | ✗  0] ✓ tests/hermes_cli/test_plugin_command_route_identity.py (1✓, 0.8s)
+[ 61.7% |   161/~261 | ✓179 | ✗  0] ✓ tests/hermes_cli/test_plugins_turn_routing.py (8✓, 1.4s)
+[ 93.9% |   245/~261 | ✓264 | ✗  0] ✓ tests/hermes_cli/test_plugins.py (85✓, 8.1s)
+[100.0% |   261/~261 | ✓289 | ✗  0] ✓ tests/hermes_cli/test_turn_route_cli_cache.py (25✓, 13.2s)
+
+=== Summary: 25 files, 289 tests passed, 0 failed (100% complete) in 32.0s (2 workers) ===
+  Durations cached to test_durations.json (25 files)
+
+=== Per-file subprocess time distribution ===
+  Files:   25
+  Total subprocess CPU-wall: 56.7s  (runner wall: 32.0s, parallelism: 2x)
+  P50: 1.31s  P90: 7.93s  P95: 8.11s  P99: 13.24s  Max: 13.24s
+  <1s: 8 files (32%)  <2s: 19 files (76%)
+  Top 10 slowest:
+     13.24s  tests/hermes_cli/test_turn_route_cli_cache.py
+      8.11s  tests/hermes_cli/test_plugins.py
+      7.93s  tests/gateway/test_queued_followup_processing_hooks.py
+      2.55s  tests/agent/test_openai_ultrafast.py
+      2.15s  tests/agent/test_credential_pool_routing.py
+      2.02s  tests/gateway/test_fast_command.py
+      1.88s  tests/hermes_cli/test_fast_command.py
+      1.55s  tests/hermes_cli/test_cli_custom_provider_vision.py
+      1.43s  tests/agent/test_fast_mode_auto.py
+      1.42s  tests/hermes_cli/test_cli_image_command.py
+TEST_EXIT_CODE=0
+HEAD_AFTER=877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+TREE_AFTER=2cca73774a32467135b529948e7eb2f3693be5b2
+DIRTY_AFTER=0
+FINISHED_AT_UTC=2026-10-11T12:32:34Z

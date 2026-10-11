@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "name": "README.md",
+      "sha256": "7c45bb184aa82ea89b2f56fdc094d0e7a23c2c3827160a5fbe85e54ce16c69ce",
+      "size": 2674
+    },
+    {
+      "name": "logs/macos-all25-py314-redacted.log",
+      "sha256": "d45002c0861e2feaab0e49f0bae0935d7bb23be9d15ea86e37330861492d8538",
+      "size": 5619
+    },
+    {
+      "name": "logs/macos-proxy-19-redacted.log",
+      "sha256": "14e3167808a77cc0867f3662176058cf0bc21475cea82ae72a193c17ed894e35",
+      "size": 1518
+    }
+  ],
+  "git_tree": "2cca73774a32467135b529948e7eb2f3693be5b2",
+  "original_review": "https://github.com/NousResearch/hermes-agent/pull/98703#pullrequestreview-5483237359",
+  "original_to_redacted": [
+    {
+      "filename": "logs/macos-all25-py314-redacted.log",
+      "original_sha256": "c8123157b08147bd3053d36b04337f6c5cdd2690cdd679cd87b71d514705204a",
+      "redacted_bytes": 5619,
+      "redacted_sha256": "d45002c0861e2feaab0e49f0bae0935d7bb23be9d15ea86e37330861492d8538"
+    },
+    {
+      "filename": "logs/macos-proxy-19-redacted.log",
+      "original_sha256": "f1871d03bd15f6a1ccaeabbca8ab5ed353f1063e896e95ac9cf060e51cabd284",
+      "redacted_bytes": 1518,
+      "redacted_sha256": "14e3167808a77cc0867f3662176058cf0bc21475cea82ae72a193c17ed894e35"
+    }
+  ],
+  "os": "macOS 14.6.1 arm64",
+  "pr_head": "877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645",
+  "publication": "PUBLIC_ADDENDUM_NOT_APPROVAL",
+  "pytest": "9.1.1",
+  "python": "3.14.7",
+  "schema": "pr-evidence-macos-addendum/v1",
+  "test_results": {
+    "all_25": {
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 289,
+      "skipped": 0
+    },
+    "macos_proxy_file": {
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 19
+    }
+  }
+}

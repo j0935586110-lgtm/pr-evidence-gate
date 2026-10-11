@@ -1,0 +1,33 @@
+RUN_AT_UTC=2026-10-11T12:30:38Z
+OS=14.6.1
+ARCH=arm64
+HOST_HEAD_BEFORE=877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+HOST_TREE_BEFORE=2cca73774a32467135b529948e7eb2f3693be5b2
+HOST_STATUS_BEFORE=0
+PYTHON=Python 3.14.7
+PYTEST=pytest 9.1.1
+COMMAND=bash scripts/run_tests.sh tests/gateway/test_proxy_mode.py -j 1 --file-retries 0 --tb=short
+SANDBOX=macOS sandbox-exec deny network; minimal inherited env and isolated HOME
+▶ not activated — using HERMES_PYTHON: <REDACTED_USER_HOME>/j1-review/pr98703-macos-877f0ec/py314-env/bin/python
+▶ running per-file parallel test suite via run_tests_parallel.py
+  (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)
+▶ pre-compiling bytecode cache
+▶ launching test runner
+Discovered 1 test files (~18 tests) under ['tests/gateway/test_proxy_mode.py']; running with -j 1
+[100.0% |    18/~18 | ✓19 | ✗ 0] ✓ tests/gateway/test_proxy_mode.py (19✓, 2.7s)
+
+=== Summary: 1 files, 19 tests passed, 0 failed (100% complete) in 3.0s (1 workers) ===
+  Durations cached to test_durations.json (1 files)
+
+=== Per-file subprocess time distribution ===
+  Files:   1
+  Total subprocess CPU-wall: 2.7s  (runner wall: 3.0s, parallelism: 1x)
+  P50: 2.73s  P90: 2.73s  P95: 2.73s  P99: 2.73s  Max: 2.73s
+  <1s: 0 files (0%)  <2s: 0 files (0%)
+  Top 10 slowest:
+      2.73s  tests/gateway/test_proxy_mode.py
+TEST_EXIT_CODE=0
+HOST_HEAD_AFTER=877f0ecbf1159a2ee5ddbe6577f4fd1e19b87645
+HOST_TREE_AFTER=2cca73774a32467135b529948e7eb2f3693be5b2
+HOST_STATUS_AFTER=0
+FINISHED_AT_UTC=2026-10-11T12:30:54Z
