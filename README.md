@@ -1,5 +1,12 @@
 # PR Evidence Gate
 
+> [!IMPORTANT]
+> **Archived / no longer maintained (2026-11-15).** This repository is a historical research prototype for checking consistency between GitHub PR commits, local worktrees, and self-reported AI-agent test artifacts. Development stopped after evaluating overlapping capabilities in GitHub's native Git, Actions, review, and provenance workflows.
+>
+> **Not recommended for production security enforcement or as proof that tests actually ran.** The published `main` branch also has a known Git `core.fsmonitor` execution risk when inspecting untrusted worktrees (see [unmerged PR #1](https://github.com/j0935586110-lgtm/pr-evidence-gate/pull/1)). Do not run it on untrusted repositories. This code remains public solely for reference; issues, new features, and PRs will not be maintained.
+>
+> **繁體中文：本專案已於 2026-11-15 停止維護並封存。** GitHub 原生功能已涵蓋主要需求，現有程式僅供研究參考，不適合作為正式安全驗收工具。主分支仍有上述未合併的安全修補，請勿用於不受信任的儲存庫。
+
 **Read-only, fail-closed PR evidence integrity checks — v0.3.0.** Lightweight Python CLI. Reuses GitHub CLI (`gh`), local Git, and *optional* existing Hermes Loop artifacts. Does not invent another agent orchestration layer, task database, or PR reviewer.
 
 **繁體中文**：PR 證據閘門是一個輕量開源工具，核對 GitHub PR HEAD、本地 Git 工作樹，以及可選的 Hermes 驗收紀錄。適用於維護者與貢獻者兩種工作流程。**所有結果都不代表授權 Push、Merge、核准或公開發布**。
@@ -112,4 +119,4 @@ Run checks after new commits and before preparing release evidence; **always ind
 [LICENSE](LICENSE) and [NOTICE](NOTICE). The original v0.1.0 release
 was MIT-licensed and remains available under its historical terms.
 
-Issues and small reproducible PRs welcome.
+**Maintenance status:** archived; new issues and pull requests are not being accepted or reviewed.
