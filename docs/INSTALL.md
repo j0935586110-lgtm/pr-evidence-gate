@@ -1,6 +1,6 @@
 # Install and first PR check
 
-PR Evidence Gate 0.2.0 supports a low-dependency Python CLI, not yet a
+PR Evidence Gate 0.3.0 supports a low-dependency Python CLI, not yet a
 double-click GUI app. Downloading the source lets you **run unit tests**
 immediately with Python, but checking a real PR requires Git and GitHub CLI.
 

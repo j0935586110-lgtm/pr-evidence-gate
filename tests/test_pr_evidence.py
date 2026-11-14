@@ -3,6 +3,8 @@
 import importlib.util
 import io
 import json
+import os
+import shlex
 import pathlib
 import subprocess
 import tempfile
@@ -116,6 +118,57 @@ class GateTests(unittest.TestCase):
         for bad in ("push", "merge", "comment", "review", "pr create", "shell=True"):
             self.assertNotIn(bad, all_args)
         self.assertIn("gh pr view", all_args)
+
+    def test_git_commands_disable_external_fsmonitor(self):
+        engine = FakeRunner()
+        self.run_gate(engine)
+        git_calls = [argv for argv in engine.commands if argv[0] == "git"]
+        self.assertEqual(len(git_calls), 2)
+        for argv in git_calls:
+            self.assertIn("core.fsmonitor=", argv)
+            self.assertIn("core.hooksPath=/dev/null", argv)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX controlled hook fixture")
+    def test_configured_fsmonitor_hook_is_not_executed(self):
+        """Git status must not run a repository-configured executable."""
+        import shutil
+
+        if shutil.which("git") is None:
+            self.skipTest("Git not installed")
+        root = pathlib.Path(self.tmp.name)
+        repo = root / "untrusted"
+        repo.mkdir()
+        subprocess.run(["git", "init", "-q", str(repo)], check=True)
+        subprocess.run(
+            ["git", "-C", str(repo), "-c", "user.name=Test",
+             "-c", "user.email=test@example.invalid",
+             "commit", "--allow-empty", "-qm", "baseline"], check=True
+        )
+        marker = root / "hook-executed"
+        hook = root / "controlled-fsmonitor.sh"
+        hook.write_text("#!/bin/sh\nprintf 'called\\n' >> " +
+                        shlex.quote(str(marker)) +
+                        "\nprintf '1\\n'\n")
+        hook.chmod(0o700)
+        subprocess.run(
+            ["git", "-C", str(repo), "config", "core.fsmonitor", str(hook)],
+            check=True
+        )
+
+        def gh_stub_only(argv, **kwargs):
+            if argv[0] == "gh":
+                remote = {"number": 99053, "state": "OPEN",
+                          "headRefOid": subprocess.check_output(
+                              ["git", "-C", str(repo), "rev-parse", "HEAD"],
+                              text=True).strip()}
+                return subprocess.CompletedProcess(argv, 0, json.dumps(remote), "")
+            return subprocess.run(argv, **kwargs)
+
+        self.assertEqual(
+            mod.collect(REPO, 99053, str(repo), runner=gh_stub_only)["status"],
+            "SNAPSHOT_MATCH_ONLY"
+        )
+        self.assertFalse(marker.exists(), "Git executed a repository fsmonitor hook")
 
     def test_missing_workspace_rejected(self):
         with self.assertRaises(ValueError):

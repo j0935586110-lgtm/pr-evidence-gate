@@ -13,6 +13,19 @@ For a complete review process, separately establish:
 
 Never expose personal memory, cloud service tokens, GH auth stores or open network access to a process evaluating untrusted PR code.
 
+### Read-only Git command boundary
+
+`git status` can invoke the repository's configured `core.fsmonitor`
+program. Disabling hooks with `core.hooksPath=/dev/null` alone does **not**
+disable it. This gate overrides `core.fsmonitor` with an empty value and
+uses `--no-optional-locks` for both local Git reads. The regression test
+checks that a controlled filesystem-monitor executable is never invoked.
+
+This prevents that specific execution path; it is **not an OS sandbox** or
+a guarantee that all Git configurations and filesystems are safe. Inspect
+untrusted repositories in a credential-free isolated environment. The gate
+does not execute PR test scripts and never grants permission to merge.
+
 **Limitations:** GitHub CLI auth scope is as configured on the user's host; running a read-only command does not restrict what other software using that token could do. Hermes `status.json` and `acceptance.json` remain self-attestations. The tool does not verify signatures or CI provenance. If malicious code controls the Python interpreter or local filesystem, this tool cannot guarantee trust.
 
 Please report privately to the repository owner before public disclosure of credential or approval bypass vulnerabilities.

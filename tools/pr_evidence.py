@@ -16,6 +16,13 @@ from pathlib import Path
 REPO_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 
+# A PR checkout is untrusted: repository-local core.fsmonitor can execute a
+# configured program during git status, even when hooksPath is disabled.
+# An empty -c value disables both old hook-based and newer daemon monitoring.
+# --no-optional-locks prevents optional git status index writes.
+SAFE_GIT_ARGS = ("--no-optional-locks", "-c", "core.hooksPath=/dev/null",
+                 "-c", "core.fsmonitor=")
+
 
 def call(runner, argv, cwd=None):
     result = runner(
@@ -41,10 +48,8 @@ def collect(repo: str, pr: int, worktree: str, runner=subprocess.run) -> dict:
                  "number,state,headRefOid,updatedAt"]
     ))
     head = remote.get("headRefOid")
-    local = call(runner, ["git", "-c", "core.hooksPath=/dev/null",
-                          "-C", str(path), "rev-parse", "HEAD"]).strip()
-    dirty = call(runner, ["git", "-c", "core.hooksPath=/dev/null",
-                          "-C", str(path), "status", "--porcelain=v1", "-uall"])
+    local = call(runner, ["git", *SAFE_GIT_ARGS, "-C", str(path), "rev-parse", "HEAD"]).strip()
+    dirty = call(runner, ["git", *SAFE_GIT_ARGS, "-C", str(path), "status", "--porcelain=v1", "-uall"])
     reasons = []
     if remote.get("number") != pr:
         reasons.append("remote_pr_identity_mismatch")
